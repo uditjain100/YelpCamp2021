@@ -39,7 +39,6 @@ var ele = (array) => array[Math.floor(Math.random() * array.length)];
 var Campground = mongoose.model("Campground", campgroundSchema);
 
 const display = async () => {
-  await Campground.deleteMany({});
   for (var city of cities) {
     var c = new Campground({
       title: city.city,
@@ -52,9 +51,8 @@ const display = async () => {
   }
 };
 
-display();
-// .then(() => {
-//   mongoose.connection.close();
-// });
+display().then(() => {
+  mongoose.connection.close();
+});
 
 module.exports = Campground;

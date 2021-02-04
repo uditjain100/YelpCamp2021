@@ -41,16 +41,3 @@ app.get("/campgrounds/:id", async (req, res) => {
 app.get("/campground/add", (req, res) => {
   res.render("newCamp.ejs");
 });
-
-// app.post("/campgrounds", async (req, res) => {
-//   var { title, price, description, latitude, longitude } = req.body;
-//   var c = new Campground({
-//     title: title,
-//     price: price,
-//     description: description,
-//     location: "" + latitude + " , " + longitude,
-//   });
-//   await c.save();
-//   var campgrounds = await Campground.find({});
-//   res.redirect("campgrounds.ejs", { campgrounds });
-// });

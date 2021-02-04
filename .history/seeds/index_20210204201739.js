@@ -52,9 +52,8 @@ const display = async () => {
   }
 };
 
-display();
-// .then(() => {
-//   mongoose.connection.close();
-// });
+display().then(() => {
+  mongoose.connection.close();
+});
 
 module.exports = Campground;

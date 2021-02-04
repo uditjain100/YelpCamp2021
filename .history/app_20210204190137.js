@@ -26,31 +26,14 @@ app.listen(3000, () => {
   console.log("Server got started !!");
 });
 
-app.get("/campgrounds", async (req, res) => {
+app.get("/camgrounds", async (req, res) => {
   console.log("Heyyyyyyy Home page reached... !!");
   var campgrounds = await Campground.find({});
   res.render("campgrounds.ejs", { campgrounds });
 });
 
-app.get("/campgrounds/:id", async (req, res) => {
+app.get("/campgronds/:id", async (req, res) => {
   var { id } = req.params;
   var camp = await Campground.findById(id);
   res.render("details.ejs", { camp });
 });
-
-app.get("/campground/add", (req, res) => {
-  res.render("newCamp.ejs");
-});
-
-// app.post("/campgrounds", async (req, res) => {
-//   var { title, price, description, latitude, longitude } = req.body;
-//   var c = new Campground({
-//     title: title,
-//     price: price,
-//     description: description,
-//     location: "" + latitude + " , " + longitude,
-//   });
-//   await c.save();
-//   var campgrounds = await Campground.find({});
-//   res.redirect("campgrounds.ejs", { campgrounds });
-// });

@@ -13,14 +13,8 @@
   </head>
   <body class="text-light" style="background-color: #003049">
     <div class="container">
-      <h1 class="display-03">Campgronds</h1>
-      <p>Heyyyyyyyyyyyyyyyy ... !!</p>
-      <div class="row">
-        <a href="/campground/add" class="btn col-5 btn-primary mx-auto"
-          >Create New Camp</a
-        >
-      </div>
-      <% for(var camp of campgrounds) { %>
+      <h1 class="display-03">Camp</h1>
+      <h4 class="display-08 mx-auto"><%= camp.id %></h4>
       <div
         id="item"
         class="bg-info m-2 p-1"
@@ -48,8 +42,10 @@
               align-items: center;
             "
           >
-            <a href="/campgrounds/<%= camp.id %>" class="btn btn-secondary"
-              >Details</a
+            <a
+              href="/campgrounds/<%= camp.id %>/update"
+              class="btn btn-secondary"
+              >Update</a
             >
           </div>
           <div
@@ -64,7 +60,11 @@
           </div>
         </div>
       </div>
-      <% } %>
+      <div class="row">
+        <a href="/campgronds" class="btn col-5 btn-primary mx-auto"
+          >Back to List</a
+        >
+      </div>
     </div>
   </body>
 </html>

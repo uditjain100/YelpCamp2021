@@ -40,16 +40,16 @@ var Campground = mongoose.model("Campground", campgroundSchema);
 
 const display = async () => {
   await Campground.deleteMany({});
-  for (var city of cities) {
-    var c = new Campground({
-      title: city.city,
-      price: 0,
-      description:
-        "" + ele(descriptors.descriptors) + "  " + ele(descriptors.places),
-      location: "" + city.latitude + " , " + city.longitude,
-    });
-    await c.save();
-  }
+  // for (var city of cities) {
+  //   var c = new Campground({
+  //     title: city.city,
+  //     price: 0,
+  //     description:
+  //       "" + ele(descriptors.descriptors) + "  " + ele(descriptors.places),
+  //     location: "" + city.latitude + " , " + city.longitude,
+  //   });
+  //   await c.save();
+  // }
 };
 
 display();
