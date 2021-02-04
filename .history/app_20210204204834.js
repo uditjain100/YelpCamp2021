@@ -2,8 +2,8 @@ const express = require("express");
 const app = express();
 const path = require("path");
 const mongoose = require("mongoose");
-const Campground = require("./seeds/index.js"); // const Campground = require("./models/mongodb.js");
-const methodoverride = require("method-override");
+const Campground = require("./seeds/index.js");
+// const Campground = require("./models/mongodb.js");
 
 mongoose
   .connect("mongodb://localhost:27017/yelp-camp", {
@@ -22,8 +22,7 @@ mongoose
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 
-app.use(express.urlencoded({ extended: true }));
-app.use(methodoverride("_method"));
+app.use(express.urlencoded());
 
 app.listen(3000, () => {
   console.log("Server got started !!");
@@ -45,36 +44,16 @@ app.get("/campground/add", (req, res) => {
   res.render("newCamp.ejs");
 });
 
-var len = 1000;
-
 app.post("/campgrounds", async (req, res) => {
   var { title, price, description, latitude, longitude } = req.body;
+  var campgrounds = await Campground.find({});
   var c = new Campground({
     title: title,
     price: price,
     description: description,
     location: "" + latitude + " , " + longitude,
-    rank: ++len,
+    rank: campgrounds.length + 1,
   });
   await c.save();
   res.redirect("/campgrounds");
-});
-
-app.get("/campgrounds/:id/update", async (req, res) => {
-  var { id } = req.params;
-  const camp = await Campground.findById(id);
-  res.render("update.ejs", { camp });
-});
-
-app.patch("/campground/:id", async (req, res) => {
-  var { id } = req.params;
-  var { title, price, description, latitude, longitude } = req.body;
-  await Campground.findByIdAndUpdate(id, {
-    title: title,
-    price: price,
-    description: description,
-    location: "" + latitude + " , " + longitude,
-  });
-  const camp = await Campground.findById(id);
-  res.render("details.ejs", { camp });
 });

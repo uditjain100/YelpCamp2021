@@ -60,13 +60,13 @@ app.post("/campgrounds", async (req, res) => {
   res.redirect("/campgrounds");
 });
 
-app.get("/campgrounds/:id/update", async (req, res) => {
+app.get("/campgrounds:id/update", async (req, res) => {
   var { id } = req.params;
   const camp = await Campground.findById(id);
   res.render("update.ejs", { camp });
 });
 
-app.patch("/campground/:id", async (req, res) => {
+app.patch("/campgrounds:id", async (req, res) => {
   var { id } = req.params;
   var { title, price, description, latitude, longitude } = req.body;
   await Campground.findByIdAndUpdate(id, {
@@ -75,6 +75,5 @@ app.patch("/campground/:id", async (req, res) => {
     description: description,
     location: "" + latitude + " , " + longitude,
   });
-  const camp = await Campground.findById(id);
-  res.render("details.ejs", { camp });
+  res.redirect("/campground/:id");
 });

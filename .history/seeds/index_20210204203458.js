@@ -45,7 +45,7 @@ var Campground = mongoose.model("Campground", campgroundSchema);
 var count = 0;
 
 const display = async () => {
-  // await Campground.deleteMany({});
+  await Campground.deleteMany({});
   for (var city of cities) {
     var c = new Campground({
       title: city.city,

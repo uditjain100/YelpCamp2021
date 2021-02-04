@@ -3,7 +3,6 @@ const app = express();
 const path = require("path");
 const mongoose = require("mongoose");
 const Campground = require("./seeds/index.js"); // const Campground = require("./models/mongodb.js");
-const methodoverride = require("method-override");
 
 mongoose
   .connect("mongodb://localhost:27017/yelp-camp", {
@@ -58,23 +57,4 @@ app.post("/campgrounds", async (req, res) => {
   });
   await c.save();
   res.redirect("/campgrounds");
-});
-
-app.get("/campgrounds/:id/update", async (req, res) => {
-  var { id } = req.params;
-  const camp = await Campground.findById(id);
-  res.render("update.ejs", { camp });
-});
-
-app.patch("/campground/:id", async (req, res) => {
-  var { id } = req.params;
-  var { title, price, description, latitude, longitude } = req.body;
-  await Campground.findByIdAndUpdate(id, {
-    title: title,
-    price: price,
-    description: description,
-    location: "" + latitude + " , " + longitude,
-  });
-  const camp = await Campground.findById(id);
-  res.render("details.ejs", { camp });
 });

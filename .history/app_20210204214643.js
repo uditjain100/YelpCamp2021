@@ -75,6 +75,5 @@ app.patch("/campground/:id", async (req, res) => {
     description: description,
     location: "" + latitude + " , " + longitude,
   });
-  const camp = await Campground.findById(id);
-  res.render("details.ejs", { camp });
+  res.redirect("/campground/:id");
 });
