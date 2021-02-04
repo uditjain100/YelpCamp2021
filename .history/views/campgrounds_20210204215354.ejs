@@ -54,17 +54,21 @@
             >
           </div>
           <form
+            method="POST"
+            action="/products/<%= product.id %>?_method=DELETE"
+          >
+            <button type="submit" class="btn btn-danger m-2">Delete</button>
+          </form>
+          <div
+            class="col-5 mx-auto"
             style="
               display: flex;
               justify-content: space-evenly;
               align-items: center;
             "
-            class="col-5 mx-auto"
-            method="POST"
-            action="/campground/<%= camp.id %>?_method=DELETE"
           >
-            <button type="submit" class="btn btn-danger">Delete</button>
-          </form>
+            <div class="btn btn-danger">Delete</div>
+          </div>
         </div>
       </div>
       <% } %>

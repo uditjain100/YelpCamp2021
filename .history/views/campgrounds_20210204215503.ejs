@@ -54,16 +54,19 @@
             >
           </div>
           <form
-            style="
-              display: flex;
-              justify-content: space-evenly;
-              align-items: center;
-            "
-            class="col-5 mx-auto"
             method="POST"
-            action="/campground/<%= camp.id %>?_method=DELETE"
+            action="/campgrounds/<%= camp.id %>?_method=DELETE"
           >
-            <button type="submit" class="btn btn-danger">Delete</button>
+            <div
+              class="col-5 mx-auto"
+              style="
+                display: flex;
+                justify-content: space-evenly;
+                align-items: center;
+              "
+            >
+              <button type="submit" class="btn btn-danger">Delete</button>
+            </div>
           </form>
         </div>
       </div>

@@ -82,6 +82,6 @@ app.patch("/campground/:id", async (req, res) => {
 app.delete("/campground/:id", async (req, res) => {
   var { id } = req.params;
   await Campground.findByIdAndDelete(id);
-  var campgrounds = await Campground.find({});
-  res.render("campgrounds.ejs", { campgrounds });
+  const camp = await Campground.find({});
+  res.render("campgrounds.ejs", { camp });
 });

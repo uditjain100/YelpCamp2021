@@ -61,9 +61,11 @@
             "
             class="col-5 mx-auto"
             method="POST"
-            action="/campground/<%= camp.id %>?_method=DELETE"
+            action="/campgrounds/<%= camp.id %>?_method=DELETE"
           >
-            <button type="submit" class="btn btn-danger">Delete</button>
+            <div>
+              <button type="submit" class="btn btn-danger">Delete</button>
+            </div>
           </form>
         </div>
       </div>
