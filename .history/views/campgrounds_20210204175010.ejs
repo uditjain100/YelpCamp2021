@@ -11,16 +11,16 @@
       crossorigin="anonymous"
     />
   </head>
-  <body class="text-light" style="background-color: #003049">
+  <body>
     <div class="container">
       <h1 class="display-03">Campgronds</h1>
       <p>Heyyyyyyyyyyyyyyyy ... !!</p>
       <% for(var camp of campgrounds) { %>
-      <div class="row m-2 bg-primary text-light">
+      <div class="row m-2 bg-primary">
         <div class="col-3"><%= camp.title %></div>
-        <div class="col-2"><%= camp.price %></div>
+        <div class="col-3"><%= camp.price %></div>
         <div class="col-3"><%= camp.description %></div>
-        <div class="col-4"><%= camp.location %></div>
+        <div class="col-3"><%= camp.location %></div>
       </div>
       <% } %>
     </div>

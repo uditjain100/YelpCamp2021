@@ -2,8 +2,7 @@ const express = require("express");
 const app = express();
 const path = require("path");
 const mongoose = require("mongoose");
-const Campground = require("./seeds/index.js");
-// const Campground = require("./models/mongodb.js");
+const Campground = require("./models/mongodb.js");
 
 mongoose
   .connect("mongodb://localhost:27017/yelp-camp", {
@@ -27,7 +26,6 @@ app.listen(3000, () => {
 });
 
 app.get("/", async (req, res) => {
-  console.log("Heyyyyyyy Home page reached... !!");
-  var campgrounds = await Campground.find({});
-  res.render("campgrounds.ejs", { campgrounds });
+  console.log("Heyyyyyyy ... !!");
+  res.render("campgrounds.ejs");
 });

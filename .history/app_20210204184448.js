@@ -28,6 +28,14 @@ app.listen(3000, () => {
 
 app.get("/", async (req, res) => {
   console.log("Heyyyyyyy Home page reached... !!");
+  await Campground.deleteMany({});
+  var camp = new Campground({
+    title: "New Orleans",
+    price: 25,
+    description: "Cold One",
+    location: "New Orleans",
+  });
+  await camp.save();
   var campgrounds = await Campground.find({});
   res.render("campgrounds.ejs", { campgrounds });
 });
