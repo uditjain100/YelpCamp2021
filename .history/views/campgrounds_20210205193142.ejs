@@ -1,17 +1,25 @@
 <% layout('../layouts/boilerplate') %>
 <h1 class="display-03">Campgronds</h1>
 <% for(var camp of campgrounds) { %>
-<div id="item" class="m-2 p-1">
-  <div class="row m-2">
+<div
+  id="item"
+  class="bg-primary m-2 p-1"
+  style="border: 1px violet solid; border-radius: 10%"
+>
+  <div class="row m-2 text-light">
     <div class="col-1"><%= camp.rank %></div>
-    <div class="col-5"><%= camp.title %></div>
-    <div class="col-3 mx-auto">
+    <div class="col-2"><%= camp.title %></div>
+    <div
+      class="col-5 mx-auto"
+      style="display: flex; justify-content: space-evenly; align-items: center"
+    >
       <a href="/campgrounds/<%= camp.id %>" class="btn btn-secondary"
         >Details</a
       >
     </div>
     <form
-      class="col-3 mx-auto"
+      style="display: flex; justify-content: space-evenly; align-items: center"
+      class="col-5 mx-auto"
       method="POST"
       action="/campground/<%= camp.id %>?_method=DELETE"
     >

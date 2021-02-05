@@ -52,23 +52,23 @@ var Campground = mongoose.model("Campground", campgroundSchema);
 var count = 0;
 
 const display = async () => {
-  // await Campground.deleteMany({});
-  var i = 0;
-  for (var city of cities) {
-    if (i === 10) break;
-    i++;
-    var c = new Campground({
-      title: "" + ele(descriptors.descriptors) + "  " + ele(descriptors.places),
-      city: city.city,
-      price: p(),
-      description:
-        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo earum quam aperiam quia eum? Provident facere, saepe officiis commodi inventore perspiciatis aliquid itaque id, architecto, tempore neque possimus autem blanditiis!",
-      location: "" + city.latitude + " , " + city.longitude,
-      rank: ++count,
-      img: "https://source.unsplash.com/collection/483251",
-    });
-    await c.save();
-  }
+  await Campground.deleteMany({});
+  // var i = 0;
+  // for (var city of cities) {
+  //   if (i === 10) break;
+  //   i++;
+  //   var c = new Campground({
+  //     title: "" + ele(descriptors.descriptors) + "  " + ele(descriptors.places),
+  //     city: city.city,
+  //     price: p(),
+  //     description:
+  //       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo earum quam aperiam quia eum? Provident facere, saepe officiis commodi inventore perspiciatis aliquid itaque id, architecto, tempore neque possimus autem blanditiis!",
+  //     location: "" + city.latitude + " , " + city.longitude,
+  //     rank: ++count,
+  //     img: "https://source.unsplash.com/collection/483251",
+  //   });
+  //   await c.save();
+  // }
 };
 
 display();

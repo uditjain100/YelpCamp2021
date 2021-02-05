@@ -1,0 +1,38 @@
+<% layout('../layouts/boilerplate') %>
+<h1 class="display-03"><%= camp.title %></h1>
+<h2 class="display-06 mx-auto"><%= camp.city %></h2>
+<h4 class="display-08 mx-auto"><%= camp.id %></h4>
+<img src="<%= camp.img %>" alt="" style="width: 200px; height: 200px" />
+<p class="description"><%= camp.description %></p>
+<div
+  id="item"
+  class="bg-info m-2 p-1"
+  style="border: 1px violet solid; border-radius: 10%"
+>
+  <div class="row m-2 bg-primary text-light">
+    <div class="col-2"><%= camp.price %></div>
+    <div class="col-4"><%= camp.location %></div>
+  </div>
+  <div
+    class="row"
+    style="display: flex; justify-content: space-evenly; align-items: center"
+  >
+    <div
+      class="col-5 mx-auto"
+      style="display: flex; justify-content: space-evenly; align-items: center"
+    >
+      <a href="/campgrounds/<%= camp.id %>/update" class="btn btn-secondary"
+        >Update</a
+      >
+    </div>
+    <div
+      class="col-5 mx-auto"
+      style="display: flex; justify-content: space-evenly; align-items: center"
+    >
+      <div class="btn btn-danger">Delete</div>
+    </div>
+  </div>
+</div>
+<div class="row mt-auto">
+  <a href="/campgrounds" class="btn col-5 btn-primary mx-auto">Back to List</a>
+</div>

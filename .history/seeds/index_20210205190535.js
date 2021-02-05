@@ -59,13 +59,11 @@ const display = async () => {
     i++;
     var c = new Campground({
       title: "" + ele(descriptors.descriptors) + "  " + ele(descriptors.places),
-      city: city.city,
-      price: p(),
-      description:
-        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo earum quam aperiam quia eum? Provident facere, saepe officiis commodi inventore perspiciatis aliquid itaque id, architecto, tempore neque possimus autem blanditiis!",
+      city : city.city,
+      price: p{},
+      description:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo earum quam aperiam quia eum? Provident facere, saepe officiis commodi inventore perspiciatis aliquid itaque id, architecto, tempore neque possimus autem blanditiis!",
       location: "" + city.latitude + " , " + city.longitude,
       rank: ++count,
-      img: "https://source.unsplash.com/collection/483251",
     });
     await c.save();
   }

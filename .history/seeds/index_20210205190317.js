@@ -45,7 +45,6 @@ const campgroundSchema = new Schema({
 });
 
 var ele = (array) => array[Math.floor(Math.random() * array.length)];
-var p = () => Math.floor(Math.random() * 30);
 
 var Campground = mongoose.model("Campground", campgroundSchema);
 
@@ -59,13 +58,12 @@ const display = async () => {
     i++;
     var c = new Campground({
       title: "" + ele(descriptors.descriptors) + "  " + ele(descriptors.places),
-      city: city.city,
-      price: p(),
+      city : city.city,
+      price: 0,
       description:
-        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo earum quam aperiam quia eum? Provident facere, saepe officiis commodi inventore perspiciatis aliquid itaque id, architecto, tempore neque possimus autem blanditiis!",
+        ,
       location: "" + city.latitude + " , " + city.longitude,
       rank: ++count,
-      img: "https://source.unsplash.com/collection/483251",
     });
     await c.save();
   }

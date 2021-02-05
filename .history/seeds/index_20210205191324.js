@@ -65,7 +65,7 @@ const display = async () => {
         "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo earum quam aperiam quia eum? Provident facere, saepe officiis commodi inventore perspiciatis aliquid itaque id, architecto, tempore neque possimus autem blanditiis!",
       location: "" + city.latitude + " , " + city.longitude,
       rank: ++count,
-      img: "https://source.unsplash.com/collection/483251",
+      img: "https://source.unsplash.com/collection/190727",
     });
     await c.save();
   }
