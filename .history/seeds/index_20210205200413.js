@@ -41,7 +41,7 @@ const campgroundSchema = new Schema({
   },
   img: {
     type: String,
-    default: "https://source.unsplash.com/collection/483251",
+    default : "https://source.unsplash.com/collection/483251""
   },
 });
 

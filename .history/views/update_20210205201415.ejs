@@ -1,14 +1,15 @@
-<% layout('../layouts/boilerplate') %>
+<% layout('../layouts/boilerplate') %> <% layout('../layouts/boilerplate') %>
 <h2 class="display-2 d-grid col-5 mx-auto" style="text-align: center">
-  Add Camp
+  Update Camp
 </h2>
-<form action="/campgrounds" method="POST">
+<form action="/campground/<%= camp.id %>?_method=PATCH" method="POST">
   <div class="row">
     <div class="form-group col-6">
       <label for="title">Campground Name</label>
       <input
         type="text"
         id="title"
+        value="<%= camp.title %>"
         class="form-control"
         placeholder="title"
         name="title"
@@ -21,6 +22,7 @@
         <input
           type="text"
           id="price"
+          value="<%= camp.price %>"
           placeholder="0.00"
           class="form-control"
           name="price"
@@ -30,23 +32,12 @@
   </div>
   <div class="row">
     <div class="form-group col-12">
-      <label for="city">Campground City</label>
-      <input
-        type="text"
-        id="city"
-        class="form-control"
-        placeholder="city"
-        name="city"
-      />
-    </div>
-  </div>
-  <div class="row">
-    <div class="form-group col-12">
       <label for="description">Campground Description</label>
       <input
         type="text"
         id="description"
         class="form-control"
+        value="<%= camp.description %>"
         placeholder="description"
         name="description"
       />
@@ -58,6 +49,7 @@
       <input
         type="text"
         id="img"
+        value="<%= camp.img %>"
         class="form-control"
         placeholder="url"
         name="img"
@@ -72,6 +64,7 @@
         id="latitude"
         class="form-control"
         placeholder="latitude"
+        value="<%= camp.latitude %>"
         name="latitude"
       />
     </div>
@@ -82,14 +75,15 @@
         id="longitude"
         class="form-control"
         placeholder="longitude"
+        value="<%= camp.longitude %>"
         name="longitude"
       />
     </div>
   </div>
   <div class="d-grid col-4 mx-auto mt-3">
-    <button type="submit" class="btn btn-success">Add</button>
+    <button type="submit" class="btn btn-success">Update</button>
   </div>
 </form>
 <div class="d-grid col-6 mx-auto mt-3">
-  <a href="/campgrounds" class="btn btn-danger">Back To List</a>
+  <a href="/campgrounds/<%= camp.id %>" class="btn btn-danger">Cancel</a>
 </div>

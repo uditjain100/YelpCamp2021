@@ -51,11 +51,10 @@ app.get("/campground/add", (req, res) => {
 var len = 1000;
 
 app.post("/campgrounds", async (req, res) => {
-  var { title, price, city, description, img, latitude, longitude } = req.body;
+  var { title, price, description, img, latitude, longitude } = req.body;
   var c = new Campground({
     title: title,
     price: price,
-    city: city,
     description: description,
     location: "" + latitude + " , " + longitude,
     rank: ++len,

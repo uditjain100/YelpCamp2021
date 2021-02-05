@@ -1,5 +1,6 @@
 <% layout('../layouts/boilerplate') %>
-<div class="row my-5">
+
+<div class="row">
   <div class="col-6 offset-3">
     <div class="card"></div>
     <img src="<%= camp.img %>" class="card-img-top" alt="...">
@@ -7,7 +8,7 @@
         <h5 class="card-title"><%= camp.title %></h5>
         <h6 class="card-location" style="font-weight: 900;"><%= camp.city %></h6>
         <p class="card-text"><%= camp.description %></p>
-        <h6 class="card-price" style="font-weight: 700">Price : $<%= camp.price %></h6>
+        <h6 class="card-price" style="font-weight: 500">Price : $<%= camp.price %></h6>
         <a href="/campgrounds/<%= camp.id %>/update"
           style="width: 200px"
           class="btn btn-info">Update</a>
