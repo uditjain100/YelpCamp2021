@@ -1,14 +1,21 @@
-<% layout('../layouts/boilerplate') %>
+<% layout('layouts/boilerplate') %>
 <div class="container">
-  <h1 class="display-03">Camp</h1>
-  <h4 class="display-08 mx-auto"><%= camp.id %></h4>
+  <h1 class="display-03">Campgronds</h1>
+  <p>Heyyyyyyyyyyyyyyyy ... !!</p>
+  <div class="row">
+    <a href="/campground/add" class="btn col-5 btn-primary mx-auto"
+      >Create New Camp</a
+    >
+  </div>
+  <% for(var camp of campgrounds) { %>
   <div
     id="item"
     class="bg-info m-2 p-1"
     style="border: 1px violet solid; border-radius: 10%"
   >
     <div class="row m-2 bg-primary text-light">
-      <div class="col-3"><%= camp.title %></div>
+      <div class="col-1"><%= camp.rank %></div>
+      <div class="col-2"><%= camp.title %></div>
       <div class="col-2"><%= camp.price %></div>
       <div class="col-3"><%= camp.description %></div>
       <div class="col-4"><%= camp.location %></div>
@@ -25,25 +32,23 @@
           align-items: center;
         "
       >
-        <a href="/campgrounds/<%= camp.id %>/update" class="btn btn-secondary"
-          >Update</a
+        <a href="/campgrounds/<%= camp.id %>" class="btn btn-secondary"
+          >Details</a
         >
       </div>
-      <div
-        class="col-5 mx-auto"
+      <form
         style="
           display: flex;
           justify-content: space-evenly;
           align-items: center;
         "
+        class="col-5 mx-auto"
+        method="POST"
+        action="/campground/<%= camp.id %>?_method=DELETE"
       >
-        <div class="btn btn-danger">Delete</div>
-      </div>
+        <button type="submit" class="btn btn-danger">Delete</button>
+      </form>
     </div>
   </div>
-  <div class="row">
-    <a href="/campgrounds" class="btn col-5 btn-primary mx-auto"
-      >Back to List</a
-    >
-  </div>
+  <% } %>
 </div>

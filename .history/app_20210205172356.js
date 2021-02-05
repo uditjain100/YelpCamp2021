@@ -26,8 +26,7 @@ app.set("view engine", "ejs");
 app.use(express.urlencoded({ extended: true }));
 app.use(methodoverride("_method"));
 
-app.engine("ejs", ejsMate);
-
+app.engine("ejs");
 app.listen(3000, () => {
   console.log("Server got started !!");
 });

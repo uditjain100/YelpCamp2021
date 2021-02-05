@@ -1,0 +1,61 @@
+<% layout('layouts/boilerplate') %> 
+  <body class="text-light" style="background-color: #003049">
+    <div class="container">
+      <h1 class="display-03">Campgronds</h1>
+      <p>Heyyyyyyyyyyyyyyyy ... !!</p>
+      <div class="row">
+        <a href="/campground/add" class="btn col-5 btn-primary mx-auto"
+          >Create New Camp</a
+        >
+      </div>
+      <% for(var camp of campgrounds) { %>
+      <div
+        id="item"
+        class="bg-info m-2 p-1"
+        style="border: 1px violet solid; border-radius: 10%"
+      >
+        <div class="row m-2 bg-primary text-light">
+          <div class="col-1"><%= camp.rank %></div>
+          <div class="col-2"><%= camp.title %></div>
+          <div class="col-2"><%= camp.price %></div>
+          <div class="col-3"><%= camp.description %></div>
+          <div class="col-4"><%= camp.location %></div>
+        </div>
+        <div
+          class="row"
+          style="
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+          "
+        >
+          <div
+            class="col-5 mx-auto"
+            style="
+              display: flex;
+              justify-content: space-evenly;
+              align-items: center;
+            "
+          >
+            <a href="/campgrounds/<%= camp.id %>" class="btn btn-secondary"
+              >Details</a
+            >
+          </div>
+          <form
+            style="
+              display: flex;
+              justify-content: space-evenly;
+              align-items: center;
+            "
+            class="col-5 mx-auto"
+            method="POST"
+            action="/campground/<%= camp.id %>?_method=DELETE"
+          >
+            <button type="submit" class="btn btn-danger">Delete</button>
+          </form>
+        </div>
+      </div>
+      <% } %>
+    </div>
+  </body>
+</html>

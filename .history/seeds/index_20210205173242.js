@@ -48,7 +48,7 @@ const display = async () => {
   // await Campground.deleteMany({});
   var i = 0;
   for (var city of cities) {
-    if (i === 10) break;
+    if (i === 50) break;
     i++;
     var c = new Campground({
       title: city.city,

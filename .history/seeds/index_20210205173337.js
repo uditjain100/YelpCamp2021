@@ -45,21 +45,21 @@ var Campground = mongoose.model("Campground", campgroundSchema);
 var count = 0;
 
 const display = async () => {
-  // await Campground.deleteMany({});
-  var i = 0;
-  for (var city of cities) {
-    if (i === 10) break;
-    i++;
-    var c = new Campground({
-      title: city.city,
-      price: 0,
-      description:
-        "" + ele(descriptors.descriptors) + "  " + ele(descriptors.places),
-      location: "" + city.latitude + " , " + city.longitude,
-      rank: ++count,
-    });
-    await c.save();
-  }
+  await Campground.deleteMany({});
+  // var i = 0;
+  // for (var city of cities) {
+  //   if (i === 10) break;
+  //   i++;
+  //   var c = new Campground({
+  //     title: city.city,
+  //     price: 0,
+  //     description:
+  //       "" + ele(descriptors.descriptors) + "  " + ele(descriptors.places),
+  //     location: "" + city.latitude + " , " + city.longitude,
+  //     rank: ++count,
+  //   });
+  //   await c.save();
+  // }
 };
 
 display();
