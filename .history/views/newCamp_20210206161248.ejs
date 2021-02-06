@@ -1,26 +1,20 @@
-<% layout('../layouts/boilerplate') %> <% layout('../layouts/boilerplate') %>
+<% layout('../layouts/boilerplate') %>
 <h2 class="display-2 d-grid col-5 mx-auto" style="text-align: center">
-  Update Camp
+  Add Camp
 </h2>
-<form
-  action="/campground/<%= camp.id %>?_method=PATCH"
-  method="POST"
-  novalidate
-  class="validated-form"
->
+<form action="/campgrounds" method="POST" novalidate class="validated-form">
   <div class="row">
     <div class="form-group col-6">
       <label for="title">Campground Name</label>
       <input
         type="text"
         id="title"
-        required
-        value="<%= camp.title %>"
         class="form-control"
         placeholder="title"
         name="title"
+        required
       />
-      <div class="valid-feedback">&#10004; Looks Good</div>
+      <div class="valid-feedback">&#9989; Looks Good</div>
     </div>
     <div class="form-group col-6">
       <label for="price">Price</label>
@@ -29,13 +23,12 @@
         <input
           type="text"
           id="price"
-          required
-          value="<%= camp.price %>"
           placeholder="0.00"
           class="form-control"
+          required
           name="price"
         />
-        <div class="valid-feedback">&#10004; Looks Good</div>
+        <div class="valid-feedback">&#9989; Looks Good</div>
       </div>
     </div>
   </div>
@@ -45,13 +38,12 @@
       <input
         type="text"
         id="city"
-        required
-        value="<%= camp.city %>"
         class="form-control"
+        required
         placeholder="city"
         name="city"
       />
-      <div class="valid-feedback">&#10004; Looks Good</div>
+      <div class="valid-feedback">&#9989; Looks Good</div>
     </div>
   </div>
   <div class="row">
@@ -60,13 +52,12 @@
       <input
         type="text"
         id="description"
-        class="form-control"
         required
-        value="<%= camp.description %>"
+        class="form-control"
         placeholder="description"
         name="description"
       />
-      <div class="valid-feedback">&#10004; Looks Good</div>
+      <div class="valid-feedback">&#9989; Looks Good</div>
     </div>
   </div>
   <div class="row">
@@ -74,14 +65,13 @@
       <label for="img">Image URL</label>
       <input
         type="text"
-        required
         id="img"
-        value="<%= camp.img %>"
         class="form-control"
+        required
         placeholder="url"
         name="img"
       />
-      <div class="valid-feedback">&#10004; Looks Good</div>
+      <div class="valid-feedback">&#9989; Looks Good</div>
     </div>
   </div>
   <div class="row">
@@ -93,10 +83,9 @@
         class="form-control"
         required
         placeholder="latitude"
-        value="<%= camp.latitude %>"
         name="latitude"
       />
-      <div class="valid-feedback">&#10004; Looks Good</div>
+      <div class="valid-feedback">&#9989; Looks Good</div>
     </div>
     <div class="form-group col-6">
       <label for="longitude">Campground Longitude</label>
@@ -104,18 +93,37 @@
         type="text"
         id="longitude"
         class="form-control"
-        placeholder="longitude"
-        value="<%= camp.longitude %>"
         required
+        placeholder="longitude"
         name="longitude"
       />
-      <div class="valid-feedback">&#10004; Looks Good</div>
+      <div class="valid-feedback">&#9989; Looks Good</div>
     </div>
   </div>
   <div class="d-grid col-4 mx-auto mt-3">
-    <button type="submit" class="btn btn-success">Update</button>
+    <button type="submit" class="btn btn-success">Add</button>
   </div>
 </form>
 <div class="d-grid col-6 mx-auto mt-3">
-  <a href="/campgrounds/<%= camp.id %>" class="btn btn-danger">Cancel</a>
+  <a href="/campgrounds" class="btn btn-danger">Back To List</a>
 </div>
+
+<script>
+  (function () {
+    "use-strict";
+    var forms = document.querySelectorAll(".validated-form");
+    Array.from(forms).forEach(function (form) {
+      form.addEventListener(
+        "submit",
+        function (event) {
+          if (!form.checkValidity()) {
+            event.preventDefault();
+            event.stopPropagation();
+          }
+          form.classList.add("was-validated");
+        },
+        false
+      );
+    });
+  })();
+</script>
