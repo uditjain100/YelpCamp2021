@@ -52,7 +52,8 @@ app.get(
 
 app.get(
   "/campground/add",
-  catchAsyncError(async (req, res) => {
+  catchAsyncError((req, res) => {
+    console.log("Ceased Meteor !!!");
     res.render("newCamp.ejs");
   })
 );
@@ -140,8 +141,12 @@ app.all("*", (req, res, next) => {
 });
 
 app.use((err, req, res, next) => {
-  const { statusCode = 500, message = "Something went wrong" } = err;
-  res.status(statusCode).render("error.ejs", { err });
+  const { status = 500 } = err;
+  if (!err.message) {
+    console.log("Creased Meteor !!!");
+    err.message = "Something went wrong";
+  }
+  res.status(status).render("error.ejs", { err });
 });
 
 app.listen(3000, () => {

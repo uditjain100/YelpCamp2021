@@ -52,7 +52,7 @@ app.get(
 
 app.get(
   "/campground/add",
-  catchAsyncError(async (req, res) => {
+  catchAsyncError((req, res) => {
     res.render("newCamp.ejs");
   })
 );
@@ -136,12 +136,13 @@ app.delete(
 );
 
 app.all("*", (req, res, next) => {
+  console.log("Ceased Meteor");
   next(new ExpressError(404, "Page Not Found :("));
 });
 
 app.use((err, req, res, next) => {
-  const { statusCode = 500, message = "Something went wrong" } = err;
-  res.status(statusCode).render("error.ejs", { err });
+  const { status = 500, message = "Something went wrong" } = err;
+  res.status(status).render("error.ejs", { err });
 });
 
 app.listen(3000, () => {

@@ -5,8 +5,8 @@ const mongoose = require("mongoose");
 const Campground = require("./seeds/index.js"); // const Campground = require("./models/mongodb.js");
 const methodoverride = require("method-override");
 const ejsMate = require("ejs-mate");
+const Joi = require("joi");
 
-const campgroundSchema = require("./ulits/validateSchemas");
 const catchAsyncError = require("./ulits/CatchAsyncError");
 const ExpressError = require("./ulits/ExpressError");
 
@@ -52,12 +52,23 @@ app.get(
 
 app.get(
   "/campground/add",
-  catchAsyncError(async (req, res) => {
+  catchAsyncError((req, res) => {
     res.render("newCamp.ejs");
   })
 );
 
 const validateSchema = (req, res, next) => {
+  var campgroundSchema = Joi.object({
+    campground: Joi.object({
+      title: Joi.string().required(),
+      price: Joi.number().required().min(0),
+      city: Joi.string().required(),
+      description: Joi.string().required(),
+      img: Joi.string().required(),
+      latitude: Joi.number().required(),
+      longitude: Joi.number().required(),
+    }).required(),
+  });
   var validationResult = campgroundSchema.validate(req.body);
   if (validationResult.error) {
     const errorMessage = validationResult.error.details
@@ -109,8 +120,7 @@ app.get(
 );
 
 app.patch(
-  "/campground/:id",
-  validateSchema,
+  "/campground/:id", validateSchema
   catchAsyncError(async (req, res) => {
     var { id } = req.params;
     var { title, price, description, latitude, longitude } = req.body;
@@ -140,8 +150,9 @@ app.all("*", (req, res, next) => {
 });
 
 app.use((err, req, res, next) => {
-  const { statusCode = 500, message = "Something went wrong" } = err;
-  res.status(statusCode).render("error.ejs", { err });
+  const { status = 500 } = err;
+  if (!err.message) err.message = "Something went wrong";
+  res.status(status).render("error.ejs", { err });
 });
 
 app.listen(3000, () => {

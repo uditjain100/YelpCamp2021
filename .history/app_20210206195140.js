@@ -5,8 +5,7 @@ const mongoose = require("mongoose");
 const Campground = require("./seeds/index.js"); // const Campground = require("./models/mongodb.js");
 const methodoverride = require("method-override");
 const ejsMate = require("ejs-mate");
-
-const campgroundSchema = require("./ulits/validateSchemas");
+var campgroundSchema = require("./ulits/validateSchemas");
 const catchAsyncError = require("./ulits/CatchAsyncError");
 const ExpressError = require("./ulits/ExpressError");
 
@@ -52,7 +51,7 @@ app.get(
 
 app.get(
   "/campground/add",
-  catchAsyncError(async (req, res) => {
+  catchAsyncError((req, res) => {
     res.render("newCamp.ejs");
   })
 );
@@ -140,8 +139,9 @@ app.all("*", (req, res, next) => {
 });
 
 app.use((err, req, res, next) => {
-  const { statusCode = 500, message = "Something went wrong" } = err;
-  res.status(statusCode).render("error.ejs", { err });
+  const { status = 500 } = err;
+  if (!err.message) err.message = "Something went wrong";
+  res.status(status).render("error.ejs", { err });
 });
 
 app.listen(3000, () => {

@@ -141,6 +141,9 @@ app.all("*", (req, res, next) => {
 
 app.use((err, req, res, next) => {
   const { statusCode = 500, message = "Something went wrong" } = err;
+  console.log("***********************************");
+  console.log(err);
+  console.log("***********************************");
   res.status(statusCode).render("error.ejs", { err });
 });
 
