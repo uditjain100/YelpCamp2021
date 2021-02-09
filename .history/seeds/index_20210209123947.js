@@ -65,7 +65,7 @@ const display = async () => {
   }
 };
 
-// display();
+display();
 // .then(() => {
 //   mongoose.connection.close();
 // });

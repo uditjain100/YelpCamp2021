@@ -8,7 +8,7 @@ mongoose
     useUnifiedTopology: true,
   })
   .then(() => {
-    console.log("Database got Connected :))");
+    console.log("Database got Connected :)");
   })
   .catch((error) => {
     console.log("Oh No ERROR ::(");
@@ -20,22 +20,15 @@ const campgroundSchema = new Schema({
     type: String,
     required: true,
   },
-  city: {
-    type: String,
-  },
   price: {
     type: Number,
     required: true,
   },
-  description: {
+  descripion: {
     type: String,
   },
   location: {
     type: String,
-  },
-  img: {
-    type: String,
-    default: "https://source.unsplash.com/collection/483251",
   },
   reviews: {
     type: [{ type: Schema.Types.ObjectId, ref: "Review" }],

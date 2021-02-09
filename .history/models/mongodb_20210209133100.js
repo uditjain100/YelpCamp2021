@@ -1,5 +1,7 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
+const cities = require("../seeds/cities");
+const descriptors = require("../seeds/seedhelpers");
 
 mongoose
   .connect("mongodb://localhost:27017/yelp-camp", {
