@@ -2,11 +2,12 @@ const path = require("path");
 const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
-const Campground = require("./seeds/index.js"); // const Campground = require("./models/mongodb.js");
+const Campground = require("./models/mongodb");
+const Review = require("./models/review"); // const Campground = require("./models/mongodb.js");
 const methodoverride = require("method-override");
 const ejsMate = require("ejs-mate");
 
-const campgroundSchema = require("./ulits/validateSchemas");
+const { campgroundSchema, reviewSchema } = require("./ulits/validateSchemas");
 const catchAsyncError = require("./ulits/CatchAsyncError");
 const ExpressError = require("./ulits/ExpressError");
 
@@ -17,7 +18,7 @@ mongoose
     useUnifiedTopology: true,
   })
   .then(() => {
-    console.log("Database got Connected :)");
+    console.log("Database got Connected (:)");
   })
   .catch((error) => {
     console.log("Oh No ERROR ::(");
@@ -32,32 +33,7 @@ app.use(methodoverride("_method"));
 
 app.engine("ejs", ejsMate);
 
-app.get(
-  "/campgrounds",
-  catchAsyncError(async (req, res) => {
-    console.log("Heyyyyyyy Home page reached... !!");
-    var campgrounds = await Campground.find({});
-    res.render("campgrounds.ejs", { campgrounds });
-  })
-);
-
-app.get(
-  "/campgrounds/:id",
-  catchAsyncError(async (req, res) => {
-    var { id } = req.params;
-    var camp = await Campground.findById(id);
-    res.render("details.ejs", { camp });
-  })
-);
-
-app.get(
-  "/campground/add",
-  catchAsyncError(async (req, res) => {
-    res.render("newCamp.ejs");
-  })
-);
-
-const validateSchema = (req, res, next) => {
+const validateCampgroundSchema = (req, res, next) => {
   var validationResult = campgroundSchema.validate(req.body);
   if (validationResult.error) {
     const errorMessage = validationResult.error.details
@@ -69,30 +45,61 @@ const validateSchema = (req, res, next) => {
   }
 };
 
+const validateReviewSchema = (req, res, next) => {
+  var validationResult = reviewSchema.validate(req.body);
+  if (validationResult.error) {
+    const errorMessage = validationResult.error.details
+      .map((ele) => ele.message)
+      .join(",");
+    throw new ExpressError(504, errorMessage);
+  } else {
+    next();
+  }
+};
+
+app.post(
+  "/campground/:id/reviews",
+  validateReviewSchema,
+  catchAsyncError(async (req, res) => {
+    const { id } = req.params;
+    const camp = await Campground.findById(id);
+    var r = Review(req.body.review);
+    camp.reviews.push(r);
+    await r.save();
+    await camp.save();
+    res.redirect("/campgrounds/" + camp._id);
+  })
+);
+
+app.get(
+  "/campgrounds",
+  catchAsyncError(async (req, res) => {
+    console.log("Heyyyyyyy Home page reached... !!");
+    var campgrounds = await Campground.find({});
+    res.render("./campground/campgrounds.ejs", { campgrounds });
+  })
+);
+
+app.get(
+  "/campgrounds/:id",
+  catchAsyncError(async (req, res) => {
+    var { id } = req.params;
+    var camp = await Campground.findById(id).populate("reviews");
+    res.render("./campground/details.ejs", { camp });
+  })
+);
+
+app.get(
+  "/campground/add",
+  catchAsyncError(async (req, res) => {
+    res.render("./campground/newCamp.ejs");
+  })
+);
+
 app.post(
   "/campgrounds",
-  validateSchema,
+  validateCampgroundSchema,
   catchAsyncError(async (req, res, next) => {
-    // if (!req.body.Campground)
-    //   throw new ExpressError(400, "Invalid Campground Data");
-    // var {
-    //   title,
-    //   price,
-    //   city,
-    //   description,
-    //   img,
-    //   latitude,
-    //   longitude,
-    // } = req.body;
-    // var c = new Campground({
-    //   title: title,
-    //   price: price,
-    //   city: city,
-    //   description: description,
-    //   location: "" + latitude + " , " + longitude,
-    //   rank: ++len,
-    //   img: img,
-    // });
     var c = new Campground(req.body.campground);
     await c.save();
     res.redirect("/campgrounds");
@@ -104,13 +111,13 @@ app.get(
   catchAsyncError(async (req, res) => {
     var { id } = req.params;
     const camp = await Campground.findById(id);
-    res.render("update.ejs", { camp });
+    res.render("./campground/update.ejs", { camp });
   })
 );
 
 app.patch(
   "/campground/:id",
-  validateSchema,
+  validateCampgroundSchema,
   catchAsyncError(async (req, res) => {
     var { id } = req.params;
     var { title, price, description, latitude, longitude } = req.body;
@@ -121,7 +128,7 @@ app.patch(
       location: "" + latitude + " , " + longitude,
     });
     const camp = await Campground.findById(id);
-    res.render("details.ejs", { camp });
+    res.render("./campground/details.ejs", { camp });
   })
 );
 
@@ -131,7 +138,7 @@ app.delete(
     var { id } = req.params;
     await Campground.findByIdAndDelete(id);
     var campgrounds = await Campground.find({});
-    res.render("campgrounds.ejs", { campgrounds });
+    res.render("./campground/campgrounds.ejs", { campgrounds });
   })
 );
 
@@ -141,7 +148,7 @@ app.all("*", (req, res, next) => {
 
 app.use((err, req, res, next) => {
   const { statusCode = 500, message = "Something went wrong" } = err;
-  res.status(statusCode).render("error.ejs", { err });
+  res.status(statusCode).render("./campground/error.ejs", { err });
 });
 
 app.listen(3000, () => {
