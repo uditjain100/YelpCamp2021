@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
-const Review = require("./review");
+const Review = require("./review")
 
 mongoose
   .connect("mongodb://localhost:27017/yelp-camp", {
@@ -43,8 +43,10 @@ const campgroundSchema = new Schema({
   },
 });
 
-campgroundSchema.post("findOneAndDelete", async function (doc) {
-  if (doc) await Review.deleteMany({ _id: { $in: doc.reviews } });
-});
+campgroundSchema.post("findOneAndDelete", async function (doc) => {
+  if(doc) {
+    await Review
+  }
+})
 
 module.exports = mongoose.model("Campground", campgroundSchema);

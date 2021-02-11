@@ -77,13 +77,14 @@ router.put(
   })
 );
 
+// TODO:
 router.delete(
   "/:id",
   catchAsyncError(async (req, res) => {
     var { id } = req.params;
     await Campground.findByIdAndDelete(id);
-    req.flash("del", "Deleted Your Review");
-    res.redirect("/campgrounds");
+    var campgrounds = await Campground.find({});
+    res.render("./campground/campgrounds.ejs", { campgrounds });
   })
 );
 

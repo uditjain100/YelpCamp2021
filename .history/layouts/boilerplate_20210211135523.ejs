@@ -14,7 +14,8 @@
   <body class="d-flex flex-column vh-100">
     <%- include("../partials/nav") %>
     <main class="container">
-      <%- include("../partials/flashmsg") %> <%- body %>
+      <div class="mx-2"><%- include("../partials/flashmsg") %></div>
+      <%- body %>
     </main>
     <%- include("../partials/footer") %>
     <script

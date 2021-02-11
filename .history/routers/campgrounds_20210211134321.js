@@ -33,6 +33,7 @@ router.get(
 router.get(
   "/add",
   catchAsyncError(async (req, res) => {
+    req.flash("success", "Successfully made a Campground");
     res.render("./campground/newCamp.ejs");
   })
 );
@@ -52,7 +53,6 @@ router.post(
   catchAsyncError(async (req, res, next) => {
     var c = new Campground(req.body.campground);
     await c.save();
-    req.flash("success", "Successfully made a Campground");
     res.redirect("/campgrounds");
   })
 );
@@ -82,8 +82,8 @@ router.delete(
   catchAsyncError(async (req, res) => {
     var { id } = req.params;
     await Campground.findByIdAndDelete(id);
-    req.flash("del", "Deleted Your Review");
-    res.redirect("/campgrounds");
+    var campgrounds = await Campground.find({});
+    res.render("./campground/campgrounds.ejs", { campgrounds });
   })
 );
 

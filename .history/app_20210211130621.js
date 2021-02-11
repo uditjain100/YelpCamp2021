@@ -33,6 +33,14 @@ app.set("view engine", "ejs");
 app.use(express.urlencoded({ extended: true }));
 app.use(methodoverride("_method"));
 
+app.use((req, res, next) => {
+  res.locals.success = req.flash("success");
+  next();
+});
+
+app.use("/campgrounds", campgrounds);
+app.use("/campgrounds/:id/reviews", reviews);
+
 app.use(express.static(path.join(__dirname, "public")));
 const sessionConfig = {
   secret: "notagoodsecret",
@@ -46,16 +54,6 @@ const sessionConfig = {
 };
 app.use(session(sessionConfig));
 app.use(flash());
-
-app.use((req, res, next) => {
-  res.locals.success = req.flash("success");
-  res.locals.error = req.flash("error");
-  res.locals.del = req.flash("del");
-  next();
-});
-
-app.use("/campgrounds", campgrounds);
-app.use("/campgrounds/:id/reviews", reviews);
 
 app.engine("ejs", ejsMate);
 
