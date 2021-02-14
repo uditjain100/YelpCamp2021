@@ -1,0 +1,59 @@
+<% layout('../layouts/boilerplate') %>
+<div class="container">
+  <h1 class="display-4 text-center mx-auto" style="width: 800px">
+    Credentials
+  </h1>
+  <form action="/signin" method="POST" class="validated-form">
+    <div class="row">
+      <div class="form-group my-3">
+        <label for="email">Email</label>
+        <input
+          type="email"
+          class="form-control"
+          required
+          id="email"
+          name="email"
+          placeholder="Email"
+        />
+        <div class="valid-feedback">&#10004; Looks Good</div>
+      </div>
+      <div class="form-group my-3">
+        <label for="username">Username</label>
+        <input
+          type="username"
+          class="form-control"
+          id="username"
+          name="username"
+          required
+          placeholder="User Name"
+        />
+        <div class="valid-feedback">&#10004; Looks Good</div>
+      </div>
+      <div class="form-group my-3">
+        <label for="password">Password</label>
+        <input
+          type="password"
+          class="form-control"
+          required
+          id="password"
+          name="password"
+          placeholder="password"
+        />
+        <div class="valid-feedback">&#10004; Looks Good</div>
+      </div>
+    </div>
+
+    <button
+      type="submit"
+      class="btn d-grid col-3 mx-auto text-white btn-success fs-4 m-3"
+    >
+      Enter
+    </button>
+  </form>
+  <a
+    href="/signup"
+    class="btn d-grid col-3 mx-auto text-white btn-primary fs-4 m-3"
+  >
+    Sign Up
+  </a>
+</div>

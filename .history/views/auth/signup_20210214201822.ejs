@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign Up</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <h1 class="display-2 text-center mx-auto" style="width: 600px">
+        Sign Up
+      </h1>
+      <form action="/signup" method="POST">
+        <div class="row">
+          <div class="form-group col-6">
+            <label for="username" class="fs-4">Username</label>
+            <input
+              type="username"
+              class="form-control"
+              id="username"
+              name="username"
+              placeholder="User Name"
+            />
+          </div>
+          <div class="form-group col-6">
+            <label for="password" class="fs-4">Password</label>
+            <input
+              type="password"
+              class="form-control"
+              id="password"
+              name="password"
+              placeholder="password"
+            />
+          </div>
+        </div>
+
+        <button
+          type="submit"
+          class="btn d-grid col-4 mx-auto text-white btn-success fs-4 m-3 p-3"
+        >
+          Register
+        </button>
+      </form>
+      <a
+        href="/signin"
+        class="btn d-grid col-4 mx-auto text-white btn-secondary fs-4 m-3 p-3"
+      >
+        Sign In
+      </a>
+    </div>
+  </body>
+</html>
