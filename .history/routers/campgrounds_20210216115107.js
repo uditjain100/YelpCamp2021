@@ -1,14 +1,14 @@
 const express = require("express");
 const router = express.Router();
 const Campground = require("../models/campground");
-const Review = require("../models/review");
 
+const { campgroundSchema } = require("../ulits/validateSchemas");
 const catchAsyncError = require("../ulits/CatchAsyncError");
+const ExpressError = require("../ulits/ExpressError");
 
 const {
   isUserAuthenticated,
   validateCampgroundSchema,
-  isUserAuthorized,
 } = require("../middleware");
 
 router.get("/home", (req, res) => {
@@ -33,17 +33,12 @@ router.get(
 
 router.get(
   "/:id",
+  isUserAuthenticated,
   catchAsyncError(async (req, res) => {
     var { id } = req.params;
-    var camp = await Campground.findById(id)
-      .populate({
-        path: "reviews",
-        populate: {
-          path: "author",
-        },
-      })
-      .populate("author");
-    console.log(camp);
+    var camp = await (
+      await Campground.findById(id).populate("reviews")
+    ).populated("author");
     res.render("./campground/details.ejs", { camp });
   })
 );
@@ -54,7 +49,6 @@ router.post(
   validateCampgroundSchema,
   catchAsyncError(async (req, res, next) => {
     var c = new Campground(req.body.campground);
-    c.author = req.user._id;
     await c.save();
     req.flash("success", "Successfully made a Campground");
     res.redirect("/campgrounds");
@@ -64,7 +58,6 @@ router.post(
 router.get(
   "/:id/update",
   isUserAuthenticated,
-  isUserAuthorized,
   catchAsyncError(async (req, res) => {
     var { id } = req.params;
     const camp = await Campground.findById(id);
@@ -76,7 +69,6 @@ router.put(
   "/:id",
   validateCampgroundSchema,
   isUserAuthenticated,
-  isUserAuthorized,
   catchAsyncError(async (req, res) => {
     var { id } = req.params;
     await Campground.findByIdAndUpdate(id, { ...req.body.campground });
@@ -88,7 +80,6 @@ router.put(
 router.delete(
   "/:id",
   isUserAuthenticated,
-  isUserAuthorized,
   catchAsyncError(async (req, res) => {
     var { id } = req.params;
     await Campground.findByIdAndDelete(id);

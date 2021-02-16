@@ -23,18 +23,9 @@
         class="btn btn-info"
         >Update</a
       >
-      <% } else { %>
-      <a
-        style="pointer-events: none; width: 200px"
-        href="/campgrounds/<%= camp.id %>/update"
-        disabled
-        class="btn btn-info"
-        >Update</a
-      >
       <% } %>
     </div>
   </div>
-  <% if (currentUser) { %>
   <div class="card col-6">
     <h5
       class="display-6 review"
@@ -90,17 +81,11 @@
           <h5 class="display-10" style="font-weight: 500; font-size: 25px">
             Review : <%= review.body %>
           </h5>
-          <figure>
-            <figcaption class="blockquote-footer mt-2">
-              <cite title="Source Title"><%= review.author.username %></cite>
-            </figcaption>
-          </figure>
         </div>
         <div
           class="col-1 d-flex"
           style="justify-content: center; align-items: center"
         >
-          <% if ( currentUser && review.author.equals(currentUser._id)) { %>
           <form
             action="/campgrounds/<%= camp.id %>/reviews/<%= review.id %>?_method=DELETE"
             method="POST"
@@ -113,25 +98,9 @@
               X
             </button>
           </form>
-          <% } else { %>
-          <form
-            action="/campgrounds/<%= camp.id %>/reviews/<%= review.id %>?_method=DELETE"
-            method="POST"
-          >
-            <button
-              disabled
-              class="btn btn-outline-danger me-2"
-              type="submit"
-              style="border-radius: 50%; font-weight: 900"
-            >
-              X
-            </button>
-          </form>
-          <% } %>
         </div>
       </div>
     </div>
     <% } %>
   </div>
-  <% } %>
 </div>

@@ -1,14 +1,13 @@
 const express = require("express");
 const router = express.Router();
 const Campground = require("../models/campground");
-const Review = require("../models/review");
 
 const catchAsyncError = require("../ulits/CatchAsyncError");
+const ExpressError = require("../ulits/ExpressError");
 
 const {
   isUserAuthenticated,
   validateCampgroundSchema,
-  isUserAuthorized,
 } = require("../middleware");
 
 router.get("/home", (req, res) => {
@@ -33,17 +32,12 @@ router.get(
 
 router.get(
   "/:id",
+  isUserAuthenticated,
   catchAsyncError(async (req, res) => {
     var { id } = req.params;
     var camp = await Campground.findById(id)
-      .populate({
-        path: "reviews",
-        populate: {
-          path: "author",
-        },
-      })
+      .populate("reviews")
       .populate("author");
-    console.log(camp);
     res.render("./campground/details.ejs", { camp });
   })
 );
@@ -64,10 +58,12 @@ router.post(
 router.get(
   "/:id/update",
   isUserAuthenticated,
-  isUserAuthorized,
   catchAsyncError(async (req, res) => {
     var { id } = req.params;
     const camp = await Campground.findById(id);
+    if (!camp.author.equals(req.user._id)) {
+      req.flash("error", "You are not authorized to do that operation");
+    }
     res.render("./campground/update.ejs", { camp });
   })
 );
@@ -76,7 +72,6 @@ router.put(
   "/:id",
   validateCampgroundSchema,
   isUserAuthenticated,
-  isUserAuthorized,
   catchAsyncError(async (req, res) => {
     var { id } = req.params;
     await Campground.findByIdAndUpdate(id, { ...req.body.campground });
@@ -88,7 +83,6 @@ router.put(
 router.delete(
   "/:id",
   isUserAuthenticated,
-  isUserAuthorized,
   catchAsyncError(async (req, res) => {
     var { id } = req.params;
     await Campground.findByIdAndDelete(id);

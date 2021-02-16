@@ -1,15 +1,25 @@
 const express = require("express");
 const router = express.Router();
 const Campground = require("../models/campground");
-const Review = require("../models/review");
 
 const catchAsyncError = require("../ulits/CatchAsyncError");
+const ExpressError = require("../ulits/ExpressError");
 
 const {
   isUserAuthenticated,
   validateCampgroundSchema,
   isUserAuthorized,
 } = require("../middleware");
+
+// const isUserAuthorized = async (req, res, next) => {
+//   const { id } = req.params;
+//   const camp = await Campground.findById(id);
+//   if (!camp.author.equals(req.user._id)) {
+//     req.flash("error", "You are not authorized to do that operation");
+//     return res.redirect("/campgrounds/" + id);
+//   }
+//   next();
+// };
 
 router.get("/home", (req, res) => {
   res.render("./campground/home.ejs");
@@ -33,17 +43,12 @@ router.get(
 
 router.get(
   "/:id",
+  isUserAuthenticated,
   catchAsyncError(async (req, res) => {
     var { id } = req.params;
     var camp = await Campground.findById(id)
-      .populate({
-        path: "reviews",
-        populate: {
-          path: "author",
-        },
-      })
+      .populate("reviews")
       .populate("author");
-    console.log(camp);
     res.render("./campground/details.ejs", { camp });
   })
 );

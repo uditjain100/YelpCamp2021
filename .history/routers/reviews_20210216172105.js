@@ -31,7 +31,6 @@ router.post(
 router.delete(
   "/:review_id",
   isUserAuthenticated,
-  isReviewUserAuthorized,
   catchAsyncError(async (req, res) => {
     const { id, review_id } = req.params;
     console.log(id, review_id, req.params);

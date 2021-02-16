@@ -100,7 +100,7 @@
           class="col-1 d-flex"
           style="justify-content: center; align-items: center"
         >
-          <% if ( currentUser && review.author.equals(currentUser._id)) { %>
+          <% if ( currentUser && camp.author.equals(currentUser._id)) { %>
           <form
             action="/campgrounds/<%= camp.id %>/reviews/<%= review.id %>?_method=DELETE"
             method="POST"
@@ -119,7 +119,6 @@
             method="POST"
           >
             <button
-              disabled
               class="btn btn-outline-danger me-2"
               type="submit"
               style="border-radius: 50%; font-weight: 900"
@@ -127,6 +126,7 @@
               X
             </button>
           </form>
+
           <% } %>
         </div>
       </div>

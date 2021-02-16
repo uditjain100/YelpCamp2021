@@ -45,13 +45,3 @@ module.exports.isUserAuthorized = async (req, res, next) => {
   }
   next();
 };
-
-module.exports.isReviewUserAuthorized = async (req, res, next) => {
-  const { review_id, id } = req.params;
-  const review = await Review.findById(review_id);
-  if (!review.author.equals(req.user._id)) {
-    req.flash("error", "You are not authorized to do that operation");
-    return res.redirect("/campgrounds/" + id);
-  }
-  next();
-};

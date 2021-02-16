@@ -1,7 +1,6 @@
 const express = require("express");
 const router = express.Router();
 const Campground = require("../models/campground");
-const Review = require("../models/review");
 
 const catchAsyncError = require("../ulits/CatchAsyncError");
 
@@ -36,14 +35,9 @@ router.get(
   catchAsyncError(async (req, res) => {
     var { id } = req.params;
     var camp = await Campground.findById(id)
-      .populate({
-        path: "reviews",
-        populate: {
-          path: "author",
-        },
-      })
+      .populate("reviews")
       .populate("author");
-    console.log(camp);
+    console.log(camp.reviews);
     res.render("./campground/details.ejs", { camp });
   })
 );

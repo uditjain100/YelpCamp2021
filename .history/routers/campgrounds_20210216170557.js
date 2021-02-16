@@ -36,14 +36,10 @@ router.get(
   catchAsyncError(async (req, res) => {
     var { id } = req.params;
     var camp = await Campground.findById(id)
-      .populate({
-        path: "reviews",
-        populate: {
-          path: "author",
-        },
-      })
+      .populate("reviews")
       .populate("author");
-    console.log(camp);
+    var r = await Review.findById(camp.reviews._id);
+    console.log(r);
     res.render("./campground/details.ejs", { camp });
   })
 );

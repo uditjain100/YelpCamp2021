@@ -38,10 +38,10 @@ const campgroundSchema = new Schema({
     type: String,
     default: "https://source.unsplash.com/collection/483251",
   },
-  author: {
-    type: Schema.Types.ObjectId,
-    ref: "User",
-  },
+  author : {
+    type : Schema.Types.ObjectId,
+    ref : "User"
+  }
   reviews: {
     type: [{ type: Schema.Types.ObjectId, ref: "Review" }],
   },

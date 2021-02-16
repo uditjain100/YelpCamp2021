@@ -17,7 +17,7 @@
               >Details</a
             >
           </div>
-          <% if ( currentUser && camp.author.equals(currentUser._id)) { %>
+          <% if (camp.author.eauals(curreentUser._id)) { %>
           <form
             class="col-3 mx-auto"
             method="POST"
@@ -25,6 +25,7 @@
           >
             <button type="submit" class="btn btn-danger">Delete</button>
           </form>
+
           <% } %>
         </div>
       </div>

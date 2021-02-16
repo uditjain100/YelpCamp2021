@@ -23,24 +23,24 @@ var p = () => Math.floor(Math.random() * 30);
 const display = async () => {
   await Campground.deleteMany({});
   var i = 0;
-  for (var city of cities) {
-    if (i === 10) break;
-    i++;
-    var c = new Campground({
-      title: "" + ele(descriptors.descriptors) + "  " + ele(descriptors.places),
-      city: city.city,
-      price: p(),
-      description:
-        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo earum quam aperiam quia eum? Provident facere, saepe officiis commodi inventore perspiciatis aliquid itaque id, architecto, tempore neque possimus autem blanditiis!",
-      location: "" + city.latitude + " , " + city.longitude,
-      img: "https://source.unsplash.com/collection/483251",
-      author: "602a7823d388b31578f9a6cc",
-    });
-    await c.save();
-  }
+  // for (var city of cities) {
+  //   if (i === 10) break;
+  //   i++;
+  //   var c = new Campground({
+  //     title: "" + ele(descriptors.descriptors) + "  " + ele(descriptors.places),
+  //     city: city.city,
+  //     price: p(),
+  //     description:
+  //       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo earum quam aperiam quia eum? Provident facere, saepe officiis commodi inventore perspiciatis aliquid itaque id, architecto, tempore neque possimus autem blanditiis!",
+  //     location: "" + city.latitude + " , " + city.longitude,
+  //     img: "https://source.unsplash.com/collection/483251",
+  //     author: "602a7823d388b31578f9a6cc",
+  //   });
+  //   await c.save();
+  // }
 };
 
-display();
+// display();
 
 // .then(() => {
 //   mongoose.connection.close();
