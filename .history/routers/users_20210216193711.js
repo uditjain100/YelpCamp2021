@@ -11,16 +11,16 @@ router
   .get(catchAsync(userController.renderSignUp))
   .post(catchAsync(userController.signUp));
 
-router
-  .route("/signin")
-  .get(catchAsync(userController.rendersignin))
-  .post(
-    passport.authenticate("local", {
-      failureFlash: true,
-      failureRedirect: "/signin",
-    }),
-    catchAsync(userController.signin)
-  );
+router.get("/signin", catchAsync(userController.rendersignin));
+
+router.post(
+  "/signin",
+  passport.authenticate("local", {
+    failureFlash: true,
+    failureRedirect: "/signin",
+  }),
+  catchAsync(userController.signin)
+);
 
 router.get("/signout", catchAsync(userController.signOut));
 

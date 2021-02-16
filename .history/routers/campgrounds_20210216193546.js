@@ -32,12 +32,14 @@ router
   .route("/:id")
   .get(catchAsyncError(campController.renderCampDetails))
   .put(
+    "/:id",
     validateCampgroundSchema,
     isUserAuthenticated,
     isUserAuthorized,
     catchAsyncError(campController.updateCamp)
   )
   .delete(
+    "/:id",
     isUserAuthenticated,
     isUserAuthorized,
     catchAsyncError(campController.deleteCamp)

@@ -32,15 +32,11 @@ router
   .route("/:id")
   .get(catchAsyncError(campController.renderCampDetails))
   .put(
+    "/:id",
     validateCampgroundSchema,
     isUserAuthenticated,
     isUserAuthorized,
     catchAsyncError(campController.updateCamp)
-  )
-  .delete(
-    isUserAuthenticated,
-    isUserAuthorized,
-    catchAsyncError(campController.deleteCamp)
   );
 
 router.get(
@@ -48,6 +44,13 @@ router.get(
   isUserAuthenticated,
   isUserAuthorized,
   catchAsyncError(campController.renderUpdate)
+);
+
+router.delete(
+  "/:id",
+  isUserAuthenticated,
+  isUserAuthorized,
+  catchAsyncError(campController.deleteCamp)
 );
 
 module.exports = router;
