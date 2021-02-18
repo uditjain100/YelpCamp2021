@@ -21,10 +21,6 @@ const imageSchema = new Schema({
   fileName: String,
 });
 
-imageSchema.virtual("thumbnail").get(function () {
-  return this.url.replace("/upload", "/upload/w_200");
-});
-
 const campgroundSchema = new Schema({
   title: {
     type: String,

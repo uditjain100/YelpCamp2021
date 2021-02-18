@@ -22,7 +22,7 @@ const imageSchema = new Schema({
 });
 
 imageSchema.virtual("thumbnail").get(function () {
-  return this.url.replace("/upload", "/upload/w_200");
+  return this.url.rep;
 });
 
 const campgroundSchema = new Schema({

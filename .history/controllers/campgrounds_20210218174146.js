@@ -51,8 +51,7 @@ module.exports.updateCamp = async (req, res) => {
   camp.images.push(...imgs);
   await camp.save();
   if (req.body.tobedeleted) {
-    for (var file of req.body.tobedeleted)
-      await cloudinary.uploader.destroy(file);
+    for (var file of req.body.tobedeleted) cloudinary.uploader.destroy(file);
     await camp.updateOne({
       $pull: { images: { fileName: { $in: req.body.tobedeleted } } },
     });

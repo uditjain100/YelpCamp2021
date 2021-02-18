@@ -1,5 +1,5 @@
 const Campground = require("../models/campground");
-const { cloudinary } = require("../cloudinary/index");
+const { cloudinary } = require("../cloudinary");
 
 module.exports.home = (req, res) => {
   res.render("./campground/home.ejs");
@@ -50,13 +50,10 @@ module.exports.updateCamp = async (req, res) => {
   var imgs = req.files.map((f) => ({ url: f.path, fileName: f.filename }));
   camp.images.push(...imgs);
   await camp.save();
-  if (req.body.tobedeleted) {
-    for (var file of req.body.tobedeleted)
-      await cloudinary.uploader.destroy(file);
+  if (req.body.tobedeleted)
     await camp.updateOne({
       $pull: { images: { fileName: { $in: req.body.tobedeleted } } },
     });
-  }
   req.flash("success", "Updated Successfully :)");
   res.render("./campground/details.ejs", { camp });
 };
