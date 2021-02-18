@@ -24,11 +24,10 @@ const display = async () => {
   await Campground.deleteMany({});
   var i = 0;
   for (var city of cities) {
-    const index = elementIndex(descriptors);
-    // if (i === 50) break;
-    // i++;
+    if (i === 10) break;
+    i++;
     var camp = new Campground({
-      title: "" + descriptors[index] + "  " + places[index],
+      title: "" + descriptors[element(descriptors)] + "  " + element(places),
       location: city.city,
       price: price(),
       description:
@@ -36,10 +35,7 @@ const display = async () => {
       author: "602a7823d388b31578f9a6cc",
       geometry: {
         type: "Point",
-        coordinates: [
-          city.latitude + price() + price(),
-          city.longitude - price() - price(),
-        ],
+        coordinates: [78, 22],
       },
       images: [
         {

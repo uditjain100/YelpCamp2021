@@ -25,8 +25,8 @@ const display = async () => {
   var i = 0;
   for (var city of cities) {
     const index = elementIndex(descriptors);
-    // if (i === 50) break;
-    // i++;
+    if (i === 50) break;
+    i++;
     var camp = new Campground({
       title: "" + descriptors[index] + "  " + places[index],
       location: city.city,
@@ -36,10 +36,7 @@ const display = async () => {
       author: "602a7823d388b31578f9a6cc",
       geometry: {
         type: "Point",
-        coordinates: [
-          city.latitude + price() + price(),
-          city.longitude - price() - price(),
-        ],
+        coordinates: [city.latitude + price(), city.longitude - price()],
       },
       images: [
         {

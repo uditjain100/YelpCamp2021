@@ -25,8 +25,8 @@ const display = async () => {
   var i = 0;
   for (var city of cities) {
     const index = elementIndex(descriptors);
-    // if (i === 50) break;
-    // i++;
+    if (i === 50) break;
+    i++;
     var camp = new Campground({
       title: "" + descriptors[index] + "  " + places[index],
       location: city.city,

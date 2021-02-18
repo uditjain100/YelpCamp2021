@@ -68,7 +68,7 @@
 
 <script>
   const mapToken = "<%- process.env.MAPBOX_TOKEN %>";
-  const allCampgrounds = { features: <%- JSON.stringify(campgrounds) %> };
+  const allCampgrounds = <%-features :  JSON.stringify(campgrounds) %>;
 </script>
 
 <script src="/javascripts/mapCluster.js"></script>
