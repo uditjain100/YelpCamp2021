@@ -23,6 +23,7 @@ module.exports.renderCampDetails = async (req, res) => {
       },
     })
     .populate("author");
+  console.log(camp);
   res.render("./campground/details.ejs", { camp });
 };
 
@@ -43,17 +44,13 @@ module.exports.renderUpdate = async (req, res) => {
 
 module.exports.updateCamp = async (req, res) => {
   var { id } = req.params;
+  console.log(req.body);
   const camp = await Campground.findByIdAndUpdate(id, {
     ...req.body.campground,
   });
   var imgs = req.files.map((f) => ({ url: f.path, fileName: f.filename }));
   camp.images.push(...imgs);
   await camp.save();
-  if (req.body.tobedeleted)
-    await camp.updateOne({
-      $pull: { images: { fileName: { $in: req.body.tobedeleted } } },
-    });
-  req.flash("success", "Updated Successfully :)");
   res.render("./campground/details.ejs", { camp });
 };
 

@@ -53,7 +53,6 @@ module.exports.updateCamp = async (req, res) => {
     await camp.updateOne({
       $pull: { images: { fileName: { $in: req.body.tobedeleted } } },
     });
-  req.flash("success", "Updated Successfully :)");
   res.render("./campground/details.ejs", { camp });
 };
 

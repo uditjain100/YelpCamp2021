@@ -46,14 +46,8 @@ module.exports.updateCamp = async (req, res) => {
   const camp = await Campground.findByIdAndUpdate(id, {
     ...req.body.campground,
   });
-  var imgs = req.files.map((f) => ({ url: f.path, fileName: f.filename }));
-  camp.images.push(...imgs);
-  await camp.save();
-  if (req.body.tobedeleted)
-    await camp.updateOne({
-      $pull: { images: { fileName: { $in: req.body.tobedeleted } } },
-    });
-  req.flash("success", "Updated Successfully :)");
+  var images = req.files.map((f) => ({ url: f.path, fileName: f.filename }));
+  camp.images.push(...images);
   res.render("./campground/details.ejs", { camp });
 };
 

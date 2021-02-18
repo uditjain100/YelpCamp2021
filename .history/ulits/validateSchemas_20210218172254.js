@@ -10,7 +10,7 @@ module.exports.campgroundSchema = Joi.object({
     latitude: Joi.number().required(),
     longitude: Joi.number().required(),
   }).required(),
-  tobedeleted: Joi.array(),
+  tobedeleted: Joi.object(),
 });
 
 module.exports.reviewSchema = Joi.object({

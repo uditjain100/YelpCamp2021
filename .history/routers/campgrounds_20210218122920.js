@@ -35,10 +35,10 @@ router
   .route("/:id")
   .get(catchAsyncError(campController.renderCampDetails))
   .put(
+    validateCampgroundSchema,
     isUserAuthenticated,
     isUserAuthorized,
     upload.array("campground[image]"),
-    validateCampgroundSchema,
     catchAsyncError(campController.updateCamp)
   )
   .delete(
