@@ -78,7 +78,7 @@ map.on("load", function () {
   });
 
   map.on("click", "unclustered-point", function (e) {
-    const text = e.features[0].properties.popupMarkup;
+    const text = e.features[0].properties;
     var coordinates = e.features[0].geometry.coordinates.slice();
     var mag = e.features[0].properties.mag;
     var tsunami;
@@ -94,7 +94,7 @@ map.on("load", function () {
       coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
     }
 
-    new mapboxgl.Popup().setLngLat(coordinates).setHTML(text).addTo(map);
+    // new mapboxgl.Popup().setLngLat(coordinates).setHTML(text).addTo(map);
   });
 
   map.on("mouseenter", "clusters", function () {

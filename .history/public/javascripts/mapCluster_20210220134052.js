@@ -94,7 +94,7 @@ map.on("load", function () {
       coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
     }
 
-    new mapboxgl.Popup().setLngLat(coordinates).setHTML(text).addTo(map);
+    // new mapboxgl.Popup().setLngLat(coordinates).setHTML(text).addTo(map);
   });
 
   map.on("mouseenter", "clusters", function () {

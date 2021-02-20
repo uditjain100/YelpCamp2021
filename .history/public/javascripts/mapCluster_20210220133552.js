@@ -78,10 +78,10 @@ map.on("load", function () {
   });
 
   map.on("click", "unclustered-point", function (e) {
-    const text = e.features[0].properties.popupMarkup;
     var coordinates = e.features[0].geometry.coordinates.slice();
     var mag = e.features[0].properties.mag;
     var tsunami;
+    const text = e.features[0].properties.popupMarkup;
     console.log(text);
 
     if (e.features[0].properties.tsunami === 1) {

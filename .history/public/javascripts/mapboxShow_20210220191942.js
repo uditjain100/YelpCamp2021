@@ -1,5 +1,4 @@
 mapboxgl.accessToken = mapToken;
-console.log(mapToken);
 var map = new mapboxgl.Map({
   container: "map", // container ID
   style: "mapbox://styles/mapbox/streets-v11", // style URL
