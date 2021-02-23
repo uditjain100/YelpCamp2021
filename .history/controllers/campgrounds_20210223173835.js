@@ -80,14 +80,8 @@ module.exports.deleteCamp = async (req, res) => {
 };
 
 module.exports.renderSearch = async (req, res) => {
-  const { campName } = req.query;
-  const regex = new RegExp(campName, "i");
-  Campground.find({ title: regex }).then((campgrounds) => {
-    if (campgrounds.length === 0) {
-      req.flash("error", "No results Found");
-      return res.redirect("/campgrounds");
-    } else {
-      return res.render("./campground/campgrounds.ejs", { campgrounds });
-    }
-  });
+  console.log(req.body);
+  const { campName } = req.body;
+  console.log(campName);
+  return res.redirect("/campgrounds");
 };

@@ -21,7 +21,14 @@ router.get(
   catchAsyncError(campController.renderAddCampground)
 );
 
-router.get("/search", catchAsyncError(campController.renderSearch));
+router.get(
+  "/search",
+  catchAsyncError(async (req, res) => {
+    console.log(req.body);
+    const { campName } = req.params;
+    return res.redirect("/campgrounds");
+  })
+);
 
 router
   .route("/")

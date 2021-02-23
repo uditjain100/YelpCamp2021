@@ -1,49 +1,22 @@
 <% layout('../layouts/boilerplate') %>
 <div id="map" style="width: 100%; height: 500px"></div>
-<h4 class="display-6 mt-4" style="text-align: center">Search Campgorund</h4>
-<div class="form-group col-6 mx-auto mb-5 mt-2">
-  <form
-    method="GET"
-    novalidate
-    action="/campgrounds/search"
-    class="validated-form"
-  >
-    <div class="input-group">
-      <input
-        type="text"
-        id="search"
-        name="campName"
-        placeholder="Search Campground ... "
-        class="form-control rounded-pill border border-success"
-        required
-      />
-      <button type="submit" class="btn btn-success rounded-circle">
-        <div
-          style="
-            -webkit-transform: rotate(-45deg);
-            -moz-transform: rotate(-45deg);
-            -o-transform: rotate(-45deg);
-            transform: rotate(-45deg);
-          "
-        >
-          &#9906;
-        </div>
-      </button>
-    </div>
-    <div class="valid-feedback">&#10004; Looks Good</div>
-  </form>
-</div>
-<div
-  class="col-5 mx-auto my-3"
-  style="display: flex; flex-wrap: wrap; justify-content: center"
->
-  <a
-    href="/campgrounds"
-    class="display-03 btn btn-outline-primary col-12 rounded-pill"
-    style="font-size: 30px"
-    >All Campgrounds</a
-  >
-</div>
+
+<!-- "**************************" -->
+
+<form class="form my-2">
+  <input
+    class="form-control d-grid col-4"
+    type="search"
+    placeholder="Search"
+    aria-label="Search"
+  />
+  <button class="btn btn-outline-success d-grid col-1" type="submit">
+    Search
+  </button>
+</form>
+
+<!-- "**************************" -->
+<h1 class="display-03 m-3">All Campgronds</h1>
 <div
   id="allCampgrounds"
   style="display: flex; flex-wrap: wrap; justify-content: space-evenly"

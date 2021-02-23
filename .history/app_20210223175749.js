@@ -77,7 +77,6 @@ const scriptSrcUrls = [
 ];
 const styleSrcUrls = [
   "https://fonts.googleapis.com",
-  "https://fonts.gstatic.com/s",
   "https://www.w3schools.com",
   "https://cdn.jsdelivr.net",
   "https://kit-free.fontawesome.com",
