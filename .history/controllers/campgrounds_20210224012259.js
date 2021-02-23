@@ -76,7 +76,6 @@ module.exports.deleteCamp = async (req, res) => {
   var { id } = req.params;
   await Campground.findByIdAndDelete(id);
   req.flash("del", "Deleted Your Review");
-
   return res.redirect("/campgrounds");
 };
 
