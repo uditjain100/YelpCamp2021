@@ -4,8 +4,13 @@ const cities = require("./cities");
 const { descriptors, places } = require("./seedhelpers");
 const { getImageURL } = require("../RandomImage");
 
+const mongoAtlasURL =
+  process.env.MongoDB_URL || "mongodb://localhost:27017/yelp-camp";
+
+console.log(process.env.MongoDB_URL);
+
 mongoose
-  .connect("mongodb://localhost:27017/yelp-camp", {
+  .connect(mongoAtlasURL, {
     useCreateIndex: true,
     useNewUrlParser: true,
     useUnifiedTopology: true,
@@ -27,7 +32,8 @@ const display = async () => {
   for (var city of cities) {
     const index = elementIndex(descriptors);
     // if (i === 1) break;
-    // i++;
+    console.log(i);
+    i++;
     var camp = new Campground({
       title: "" + descriptors[index] + "  " + places[index],
       location: city.city,
