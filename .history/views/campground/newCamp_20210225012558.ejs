@@ -1,12 +1,12 @@
-<% layout('../layouts/boilerplate') %> <% layout('../layouts/boilerplate') %>
-<h2 class="display-2 d-grid col-10 mx-auto my-4" style="text-align: center">
-  Update Campground
+<% layout('../layouts/boilerplate') %>
+<h2 class="display-2 d-grid col-8 mx-auto my-5" style="text-align: center">
+  Add Campground
 </h2>
 <form
-  action="/campgrounds/<%= camp.id %>?_method=PUT"
+  action="/campgrounds"
   method="POST"
-  novalidate
   enctype="multipart/form-data"
+  novalidate
   class="validated-form"
 >
   <div class="row">
@@ -15,11 +15,10 @@
       <input
         type="text"
         id="title"
-        required
-        value="<%= camp.title %>"
         class="form-control"
         placeholder="title"
         name="campground[title]"
+        required
       />
       <div class="valid-feedback">&#10004; Looks Good</div>
     </div>
@@ -30,10 +29,9 @@
         <input
           type="text"
           id="price"
-          required
-          value="<%= camp.price %>"
           placeholder="0.00"
           class="form-control"
+          required
           name="campground[price]"
         />
         <div class="valid-feedback">&#10004; Looks Good</div>
@@ -46,9 +44,8 @@
       <input
         type="text"
         id="location"
-        required
-        value="<%= camp.location %>"
         class="form-control"
+        required
         placeholder="location"
         name="campground[location]"
       />
@@ -61,9 +58,8 @@
       <input
         type="text"
         id="description"
-        class="form-control"
         required
-        value="<%= camp.description %>"
+        class="form-control"
         placeholder="description"
         name="campground[description]"
       />
@@ -71,54 +67,20 @@
     </div>
   </div>
   <div class="row">
-    <div class="form-group col-12">
-      <label for="img">Add More Images : </label>
+    <div class="form-group col-12 my-2">
+      <label for="img">Add Image : </label>
       <input type="file" name="campground[image]" id="" multiple />
     </div>
   </div>
-  <% for(var image of camp.images) { %>
-  <div class="row my-2">
-    <div
-      class="col-8"
-      style="display: flex; justify-content: center; align-items: center"
-    >
-      <img
-        src="<%= image.thumbnail %>"
-        alt=""
-        style="width: 500px; height: 300px"
-      />
-    </div>
-    <div
-      class="col-4"
-      style="display: flex; justify-content: center; align-items: center"
-    >
-      <div class="form-check">
-        <input
-          class="form-check-input"
-          type="checkbox"
-          name="tobedeleted[]"
-          id="delete"
-          value="<%= image.fileName %>"
-        />
-        <label
-          class="form-check-label"
-          for="delete"
-          style="font-size: large; font-weight: 900"
-        >
-          Delete
-        </label>
-      </div>
-    </div>
-  </div>
-  <% } %>
+
   <div class="d-grid col-4 mx-auto mt-3">
     <button type="submit" class="btn btn-outline-success rounded-pill">
-      Update Campground
+      Add
     </button>
   </div>
 </form>
 <div class="d-grid col-6 mx-auto mt-3">
-  <a href="/campgrounds/<%= camp.id %>" class="btn btn-danger rounded-pill"
-    >Cancel</a
+  <a href="/campgrounds" class="btn btn-danger rounded-pill"
+    >Back To Campgrounds List</a
   >
 </div>

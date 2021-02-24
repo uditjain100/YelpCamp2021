@@ -1,6 +1,6 @@
 <% layout('../layouts/boilerplate') %> <% layout('../layouts/boilerplate') %>
-<h2 class="display-2 d-grid col-10 mx-auto my-4" style="text-align: center">
-  Update Campground
+<h2 class="display-2 d-grid col-5 mx-auto" style="text-align: center">
+  Update Camp
 </h2>
 <form
   action="/campgrounds/<%= camp.id %>?_method=PUT"
@@ -112,13 +112,9 @@
   </div>
   <% } %>
   <div class="d-grid col-4 mx-auto mt-3">
-    <button type="submit" class="btn btn-outline-success rounded-pill">
-      Update Campground
-    </button>
+    <button type="submit" class="btn btn-success rounded-pill">Update</button>
   </div>
 </form>
 <div class="d-grid col-6 mx-auto mt-3">
-  <a href="/campgrounds/<%= camp.id %>" class="btn btn-danger rounded-pill"
-    >Cancel</a
-  >
+  <a href="/campgrounds/<%= camp.id %>" class="btn btn-danger">Cancel</a>
 </div>
