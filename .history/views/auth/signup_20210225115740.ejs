@@ -1,18 +1,30 @@
 <% layout('../layouts/boilerplate') %>
 <div class="container">
   <h1 class="display-4 text-center mx-auto" style="width: 800px">
-    Credentials
+    Get Registered 😊
   </h1>
-  <form action="/signin" method="POST" novalidate class="validated-form">
+  <form action="/signup" method="POST" novalidate class="validated-form">
     <div class="row">
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input
+          type="email"
+          class="form-control"
+          id="email"
+          name="email"
+          required
+          placeholder="Email"
+        />
+        <div class="valid-feedback">&#10004; Looks Good</div>
+      </div>
       <div class="form-group">
         <label for="username">Username</label>
         <input
           type="username"
           class="form-control"
           id="username"
-          name="username"
           required
+          name="username"
           placeholder="User Name"
         />
         <div class="valid-feedback">&#10004; Looks Good</div>
@@ -22,8 +34,8 @@
         <input
           type="password"
           class="form-control"
-          required
           id="password"
+          required
           name="password"
           placeholder="password"
         />
@@ -33,15 +45,15 @@
 
     <button
       type="submit"
-      class="btn d-grid col-3 mx-auto text-white btn-success fs-4 m-3 rounded-pill"
+      class="btn d-grid col-3 mx-auto btn-outline-success fs-4 m-3 rounded-pill"
     >
-      Enter
+      Register
     </button>
   </form>
   <a
-    href="/signup"
+    href="/signin"
     class="btn d-grid col-3 mx-auto text-white btn-primary fs-4 m-3 rounded-pill"
   >
-    Sign Up
+    Sign In
   </a>
 </div>
