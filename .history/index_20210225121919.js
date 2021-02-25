@@ -41,6 +41,7 @@ const display = async () => {
       description:
         "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo earum quam aperiam quia eum? Provident facere, saepe officiis commodi inventore perspiciatis aliquid itaque id, architecto, tempore neque possimus autem blanditiis!",
       author: "6034b1564d7846019893ae9b",
+
       geometry: {
         type: "Point",
         coordinates: [
