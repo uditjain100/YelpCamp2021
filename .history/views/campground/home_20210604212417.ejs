@@ -61,12 +61,20 @@
 					Jump right in and explore our many campgrounds. <br />
 					Feel free to share some of your own and comment on others!
 				</p>
-				<a
-					id="camps_btn"
-					class="btn btn-secondary bg-light text-dark font-weight-bold"
-					href="https://sheltered-basin-88055.herokuapp.com//campgrounds"
-					>View Campgrounds</a
-				>
+				<form action="/campgrounds" method="GET">
+					<button
+						type="submit"
+						class="
+							btn btn-outline-secondary
+							bg-dark
+							text-white
+							font-weight-bold
+						"
+						id="camps_btn"
+					>
+						View Campgrounds
+					</button>
+				</form>
 			</main>
 			<footer class="text-secondary text-center">
 				<h6>&copy; 2021 YelpCamp</h6>
