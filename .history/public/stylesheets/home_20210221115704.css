@@ -1,9 +1,0 @@
-body {
-  height: 100vh;
-}
-main {
-  display: flexbox;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
