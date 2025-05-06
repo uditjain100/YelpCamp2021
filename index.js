@@ -26,7 +26,7 @@ mongoose
 var elementIndex = (array) => Math.floor(Math.random() * array.length);
 var price = () => Math.floor(Math.random() * 30);
 
-const display = async () => {
+const generate = async () => {
   await Campground.deleteMany({});
   var i = 0;
   for (var city of cities) {
@@ -40,7 +40,7 @@ const display = async () => {
       price: price(),
       description:
         "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo earum quam aperiam quia eum? Provident facere, saepe officiis commodi inventore perspiciatis aliquid itaque id, architecto, tempore neque possimus autem blanditiis!",
-      author: "6034b1564d7846019893ae9b",
+      author: "6819d28156b0d5133da1155d",
       geometry: {
         type: "Point",
         coordinates: [
@@ -63,6 +63,6 @@ const display = async () => {
   }
 };
 
-display().then(() => {
+generate().then(() => {
   mongoose.connection.close();
 });
